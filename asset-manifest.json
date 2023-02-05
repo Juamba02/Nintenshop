@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Nintenshop/static/css/main.dcf5a197.css",
+    "main.js": "/Nintenshop/static/js/main.df3b8133.js",
+    "static/js/787.920be88f.chunk.js": "/Nintenshop/static/js/787.920be88f.chunk.js",
+    "index.html": "/Nintenshop/index.html",
+    "main.dcf5a197.css.map": "/Nintenshop/static/css/main.dcf5a197.css.map",
+    "main.df3b8133.js.map": "/Nintenshop/static/js/main.df3b8133.js.map",
+    "787.920be88f.chunk.js.map": "/Nintenshop/static/js/787.920be88f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dcf5a197.css",
+    "static/js/main.df3b8133.js"
+  ]
+}
