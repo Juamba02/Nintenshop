@@ -1,13 +1,13 @@
 import './App.css'; 
 import Navbar from './components/Navbar';
-import ItemListContainer from './components/ItemLitsContainer';
+import ItemListContainer from './components/ItemListContainer';
 
 function App() {
   return (
     <>
         <Navbar />
       <main style={styles.main}>
-        <ItemListContainer greeting='El mejor lugar para comprar tus artículos de Nintendo'/>
+        <ItemListContainer />
       </main>
     </>
   );

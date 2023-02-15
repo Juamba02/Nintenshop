@@ -1,0 +1,26 @@
+
+    [{
+        "name": "amiibo Mario",
+        "id": "1",
+        "category": "amiibo",
+        "price": 10,
+        "img": "./img/amiiboMario.png",
+        "desc": "amiibo de Mario de la serie Smash Bros."
+    },
+    {
+        "name": "Animal Crossing: New Horizons",
+        "id": "2",
+        "category": "Game",
+        "price": 60,
+        "img": "./img/ACNH.png",
+        "desc": "Entrega de la saga de juegos Animal Crossing para Nintendo Switch"
+    },
+    {
+        "name": "Nintendo Switch",
+        "id": "3",
+        "category": "Console",
+        "price": 300,
+        "img": "./img/NintendoSwitch.png",
+        "desc": "La consola híbrida de Nintendo"
+    }
+]
