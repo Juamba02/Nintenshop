@@ -1,15 +1,21 @@
 {
   "files": {
     "main.css": "/Nintenshop/static/css/main.dcf5a197.css",
-    "main.js": "/Nintenshop/static/js/main.df3b8133.js",
+    "main.js": "/Nintenshop/static/js/main.445760a5.js",
     "static/js/787.920be88f.chunk.js": "/Nintenshop/static/js/787.920be88f.chunk.js",
+    "static/media/amiiboMario.png": "/Nintenshop/static/media/amiiboMario.9cec3024761068816a78.png",
+    "static/media/ZeldaBOTW.jpg": "/Nintenshop/static/media/ZeldaBOTW.ba3a072208eaa2e81bb6.jpg",
+    "static/media/ACNH.jpg": "/Nintenshop/static/media/ACNH.46c4ba99f9c3ce01ef06.jpg",
+    "static/media/BOTW.jpg": "/Nintenshop/static/media/BOTW.fc3acab7c12c1808702e.jpg",
+    "static/media/NintendoSwitch.png": "/Nintenshop/static/media/NintendoSwitch.83507b443c23b8211bfd.png",
+    "static/media/MarioKart8.jpg": "/Nintenshop/static/media/MarioKart8.86db39eb05557d6f687d.jpg",
     "index.html": "/Nintenshop/index.html",
     "main.dcf5a197.css.map": "/Nintenshop/static/css/main.dcf5a197.css.map",
-    "main.df3b8133.js.map": "/Nintenshop/static/js/main.df3b8133.js.map",
+    "main.445760a5.js.map": "/Nintenshop/static/js/main.445760a5.js.map",
     "787.920be88f.chunk.js.map": "/Nintenshop/static/js/787.920be88f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dcf5a197.css",
-    "static/js/main.df3b8133.js"
+    "static/js/main.445760a5.js"
   ]
 }
