@@ -9,7 +9,9 @@ const styles = {
         width: '100%'
     },
     logo: {
-        height: '60%',
+        display: 'flex',
+        alignItems: 'center',
+        height: '80%',
         marginLeft: '0.4em'
     },
     lista: {
@@ -21,7 +23,7 @@ const styles = {
     botones: {
         color: 'white',
         textDecoration: 'none',
-        margin: '0 1em'
+        margin: '3em'
     },
     nav: {
         display: 'flex',

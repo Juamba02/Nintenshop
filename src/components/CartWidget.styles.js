@@ -19,7 +19,8 @@ const styles = {
     sCNumber: {
         color: 'red',
         fontWeight: 'bold',
-        fontSize: 'large'
+        fontSize: 'large',
+        textDecoration: 'none'
     }
 }
 
