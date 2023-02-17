@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Nintenshop/static/css/main.dcf5a197.css",
-    "main.js": "/Nintenshop/static/js/main.63912017.js",
+    "main.js": "/Nintenshop/static/js/main.8cb3951f.js",
     "static/js/787.920be88f.chunk.js": "/Nintenshop/static/js/787.920be88f.chunk.js",
     "static/media/amiiboMario.png": "/Nintenshop/static/media/amiiboMario.9cec3024761068816a78.png",
     "static/media/ZeldaBOTW.jpg": "/Nintenshop/static/media/ZeldaBOTW.ba3a072208eaa2e81bb6.jpg",
@@ -12,11 +12,11 @@
     "static/media/MarioKart8.jpg": "/Nintenshop/static/media/MarioKart8.86db39eb05557d6f687d.jpg",
     "index.html": "/Nintenshop/index.html",
     "main.dcf5a197.css.map": "/Nintenshop/static/css/main.dcf5a197.css.map",
-    "main.63912017.js.map": "/Nintenshop/static/js/main.63912017.js.map",
+    "main.8cb3951f.js.map": "/Nintenshop/static/js/main.8cb3951f.js.map",
     "787.920be88f.chunk.js.map": "/Nintenshop/static/js/787.920be88f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dcf5a197.css",
-    "static/js/main.63912017.js"
+    "static/js/main.8cb3951f.js"
   ]
 }
