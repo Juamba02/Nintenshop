@@ -9,11 +9,11 @@ const ItemListContainer = () => {
         const getProductList = async () => {
             const res = await fetch("https://api.npoint.io/83c938b057c80071084c");
             const data = await res.json();
-            {id === undefined ? (
+            id === undefined ? (
                 setProducts(data)
             ) : (
                 setProducts(data.filter(product => product.category === id))
-            )}
+            )
         }
         getProductList();
     }, [id])
