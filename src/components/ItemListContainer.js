@@ -21,9 +21,9 @@ const ItemListContainer = () => {
     return(
         <div style={styles.container}>
             {products.length ? (
-                <ItemList products={products} />
+                <ItemList products={products}/>
             ) : (
-                <h1>Cargando...</h1>
+                <h1>Loading...</h1>
             )}
         </div>
     )

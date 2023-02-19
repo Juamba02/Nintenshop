@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../logoNintenshop.png";
-import styles from "./Navbar.styles";
+import styles from "../styles/Navbar.styles";
 import ShoppingCart from "./CartWidget";
 import { Link, NavLink } from "react-router-dom";
 import NavCategories from "./NavCategories";

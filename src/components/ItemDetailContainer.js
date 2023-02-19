@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
 const styles = {
     container : {
         display: 'flex',
-        marginBottom: '21.5vh'
+        marginBottom: '50px'
     }
 }
 

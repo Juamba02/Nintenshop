@@ -1,6 +1,6 @@
 import React from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import styles from './CartWidget.styles';
+import styles from '../styles/CartWidget.styles.js';
 import { Link } from "react-router-dom";
 
 const ShoppingCart = () =>{
