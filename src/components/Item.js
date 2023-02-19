@@ -25,7 +25,7 @@ const Item = ({product}) => {
                     <p style={styles.precio}>${product.price}</p>
                 </div>
                 </div>
-                <Link to={`/product/${product.id}`} style={styles.link}>
+                <Link to={`/item/${product.id}`} style={styles.link}>
                     <button style={isHovering ? styles.botonActive : styles.botonInactive} onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>See More</button>
                 </Link>
                 

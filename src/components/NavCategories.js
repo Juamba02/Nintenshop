@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 
 const NavCategories = () => {
     const categories = [
-        {name: 'Games', id: '1', route: '/categories/Games'},
-        {name: 'Consoles', id: '2', route: '/categories/Consoles'},
-        {name: 'amiibo', id: '3', route: '/categories/amiibo'}
+        {name: 'Games', id: '1', route: '/category/Games'},
+        {name: 'Consoles', id: '2', route: '/category/Consoles'},
+        {name: 'amiibo', id: '3', route: '/category/amiibo'}
     ];
 
     return(

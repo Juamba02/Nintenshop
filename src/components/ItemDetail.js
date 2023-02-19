@@ -65,7 +65,7 @@ const ItemDetail =  ({product}) => {
                 <div style={styles.map}>
                     <Link to={'/'} style={isHoveringHome ? styles.linkActive : styles.linkInactive} onMouseEnter={handleHoverInHome} onMouseLeave={handleHoverOutHome}><span>Home</span></Link>
                     <span> &gt; </span>
-                    <Link to={`/categories/${product.category}`} style={isHoveringCat ? styles.linkActive : styles.linkInactive} onMouseEnter={handleHoverInCat} onMouseLeave={handleHoverOutCat}><span>{product.category}</span></Link>
+                    <Link to={`/category/${product.category}`} style={isHoveringCat ? styles.linkActive : styles.linkInactive} onMouseEnter={handleHoverInCat} onMouseLeave={handleHoverOutCat}><span>{product.category}</span></Link>
                     <span> &gt; </span>
                     <span style={styles.active}>{product.name}</span>
                 </div>
