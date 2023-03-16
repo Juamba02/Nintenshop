@@ -17,7 +17,7 @@ const Item = ({ product }) => {
     <div style={styles.tarjetas}>
       <div style={styles.imgTarjetas}>
         <img
-          src={require(`../img/${product.img}`)}
+          src={product.img}
           style={styles.fotoTarjetas}
         />
       </div>

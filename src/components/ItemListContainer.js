@@ -1,25 +1,36 @@
 import React, {useEffect, useState} from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import { db } from "../firebase/firebase";
+import { getDocs, collection, query, where } from "firebase/firestore"
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
     const {id} = useParams();
+    let itemTitle = id;
     useEffect(() => {
-        const getProductList = async () => {
-            const res = await fetch("https://api.npoint.io/83c938b057c80071084c");
-            const data = await res.json();
-            id === undefined ? (
-                setProducts(data)
-            ) : (
-                setProducts(data.filter(product => product.category === id))
-            )
-        }
-        getProductList();
+        const productsCollection = collection(db, 'products');
+
+        getDocs(productsCollection).then(
+            (data) => {
+                const productList = data.docs.map(product => {
+                    return {
+                        ...product.data(),
+                        id: product.id
+                    }
+                });
+                if (id === undefined) {
+                    setProducts(productList)
+                 } else{
+                    setProducts(productList.filter(product => product.category === id))
+                 }
+            }
+        )
     }, [id])
     
     return(
         <div style={styles.container}>
+            <h1>{itemTitle}</h1>
             {products.length ? (
                 <ItemList products={products}/>
             ) : (

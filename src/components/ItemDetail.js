@@ -71,7 +71,7 @@ const ItemDetail = ({ product }) => {
           <span style={styles.active}>{product.name}</span>
         </div>
 
-        <img src={require(`../img/${product.img}`)} style={styles.img} />
+        <img src={product.img} style={styles.img} />
       </div>
       <div style={styles.textContainer}>
         <h2 style={styles.name}>{product.name}</h2>

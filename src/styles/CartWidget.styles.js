@@ -1,4 +1,7 @@
 const styles = {
+  divInactive: {
+    display: 'none'
+  },
   divSC: {
     marginRight: "1em",
     display: "flex",

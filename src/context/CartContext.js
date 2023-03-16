@@ -7,11 +7,11 @@ export const CartProvider = ({ children }) => {
   const [qty, setQty] = useState(0);
 
   useEffect(() => {
-    let qtyInitial = 0;
+    let firstQty = 0;
     cart.forEach((product) => {
-      qtyInitial += product.quantity;
+      firstQty += product.quantity;
     });
-    setQty(qtyInitial);
+    setQty(firstQty);
   }, [cart]);
 
   const addProduct = (product, quantity) => {
@@ -30,7 +30,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeProduct = (id) => {
+    const product = cart.find((product) => product.id === id);
     setCart(cart.filter((product) => product.id !== id));
+    setQty(qty - product.quantity);
   };
 
   const isInCart = (id) => {
@@ -39,6 +41,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
+    setQty(0);
   };
 
   return (

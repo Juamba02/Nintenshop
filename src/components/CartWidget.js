@@ -4,17 +4,17 @@ import styles from "../styles/CartWidget.styles.js";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext.js";
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ isEmpty }) => {
   const { qty } = useContext(CartContext);
   return (
-    <div style={styles.divSC}>
-      <Link to="/cart">
-        <ShoppingCartIcon fontSize="large" style={styles.shoppingCart} />
-      </Link>
-      <div style={styles.divSCNumber}>
-        <p style={styles.sCNumber}>{qty}</p>
+      <div style={styles.divSC}>
+        <Link to="/cart">
+          <ShoppingCartIcon fontSize="large" style={styles.shoppingCart} />
+        </Link>
+        <div style={!isEmpty ? styles.divInactive : styles.divSCNumber}>
+          <p style={styles.sCNumber}>{qty}</p>
+        </div>
       </div>
-    </div>
   );
 };
 
