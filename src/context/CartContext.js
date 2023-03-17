@@ -14,11 +14,25 @@ export const CartProvider = ({ children }) => {
     setQty(firstQty);
   }, [cart]);
 
+  const add1Product = (product) => {
+    if(product.quantity < product.stock){
+      product.quantity = product.quantity + 1;
+      setQty(qty + 1);
+    }
+  };
+
+  const sub1Product = (product) => {
+    if(product.quantity > 1){
+      product.quantity = product.quantity - 1;
+      setQty(qty - 1);
+    }
+  };
+
   const addProduct = (product, quantity) => {
     if (isInCart(product.id)) {
       const auxCart = [...cart];
-      for(const auxProduct of auxCart){
-        if(auxProduct.id === product.id){
+      for (const auxProduct of auxCart) {
+        if (auxProduct.id === product.id) {
           auxProduct.quantity = auxProduct.quantity + quantity;
         }
       }
@@ -29,11 +43,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const removeProduct = (id) => {
-    const product = cart.find((product) => product.id === id);
-    setCart(cart.filter((product) => product.id !== id));
-    setQty(qty - product.quantity);
-  };
+  const removeProduct = (id) => setCart(cart.filter((product) => product.id !== id));
 
   const isInCart = (id) => {
     return cart.some((product) => product.id === id);
@@ -46,7 +56,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, qty, addProduct, removeProduct, isInCart, clearCart }}
+      value={{ cart, qty, add1Product, sub1Product, addProduct, removeProduct, isInCart, clearCart }}
     >
       {children}
     </CartContext.Provider>
