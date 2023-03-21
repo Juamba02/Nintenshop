@@ -2,12 +2,12 @@ import React, {useEffect, useState} from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase/firebase";
-import { getDocs, collection, query, where } from "firebase/firestore"
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
-    const {id} = useParams();
-    let itemTitle = id;
+    const { id } = useParams();
+    
     useEffect(() => {
         const productsCollection = collection(db, 'products');
 
@@ -30,7 +30,6 @@ const ItemListContainer = () => {
     
     return(
         <div style={styles.container}>
-            <h1>{itemTitle}</h1>
             {products.length ? (
                 <ItemList products={products}/>
             ) : (

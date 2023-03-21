@@ -6,7 +6,7 @@ const styles = {
     justifyContent: "space-between",
     backgroundColor: "red",
     height: "10vh",
-    width: "100%",
+    width: "100%"
   },
   logo: {
     display: "flex",

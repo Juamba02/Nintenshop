@@ -5,12 +5,31 @@ import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import RemoveSharpIcon from "@mui/icons-material/RemoveSharp";
 import "../styles/hover.css";
+import Form from "./Form";
 
 const Cart = () => {
-  const { cart } = useContext(CartContext);
-  const { removeProduct } = useContext(CartContext);
-  const { add1Product } = useContext(CartContext);
-  const { sub1Product } = useContext(CartContext);
+  const { cart, removeProduct, add1Product, sub1Product, total, clearCart } =
+    useContext(CartContext);
+
+  const [isHoveringCheckout, setIsHoveringCheckout] = useState(false);
+  const [isCheckoutClicked, setIsCheckoutClicked] = useState(false);
+
+  const handleHoverInCheckout = (e) => {
+    setIsHoveringCheckout(true);
+  };
+
+  const handleHoverOutCheckout = (e) => {
+    setIsHoveringCheckout(false);
+  };
+
+  const handleClick = (e) => {
+    setIsCheckoutClicked(true);
+    setIsHoveringCheckout(false);
+  };
+
+  const handleClickOff = (e) => {
+    setIsCheckoutClicked(false);
+  };
 
   return !cart.length ? (
     <div style={styles.container}>
@@ -21,35 +40,55 @@ const Cart = () => {
         </Link>
       </h1>
     </div>
+  ) : isCheckoutClicked ? (
+    <Form handleClickOff={handleClickOff} />
   ) : (
-    <div style={styles.container}>
-      {cart.map((product) => {
-        return (
-          <div key={product.id} style={styles.productContainer}>
-            <img src={product.img} style={styles.img} />
-            <h1 style={styles.name}>{product.name}</h1>
-            <div style={styles.qtyDiv}>
-              <RemoveSharpIcon
-                fontSize="small"
+    <>
+      <div style={styles.container}>
+        {cart.map((product) => {
+          return (
+            <div key={product.id} style={styles.productContainer}>
+              <img src={product.img} style={styles.img} />
+              <h1 style={styles.name}>{product.name}</h1>
+              <div style={styles.qtyDiv}>
+                <RemoveSharpIcon
+                  fontSize="small"
+                  className="button"
+                  onClick={() => sub1Product(product)}
+                />
+                <p style={styles.qty}>x{product.quantity}</p>
+                <AddSharpIcon
+                  fontSize="small"
+                  className="button"
+                  onClick={() => add1Product(product)}
+                />
+              </div>
+              <p style={styles.price}>
+                ${(product.price * product.quantity).toFixed(2)}
+              </p>
+              <DeleteSharpIcon
                 className="button"
-                onClick={() => sub1Product(product)}
-              />
-              <p style={styles.qty}>x{product.quantity}</p>
-              <AddSharpIcon
-                fontSize="small"
-                className="button"
-                onClick={() => add1Product(product)}
+                onClick={() => removeProduct(product.id)}
               />
             </div>
-            <p style={styles.price}>${product.price * product.quantity}</p>
-            <DeleteSharpIcon
-              className="button"
-              onClick={() => removeProduct(product.id)}
-            />
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+        <p style={styles.total}>Total: ${total.toFixed(2)}</p>
+        <button
+          onMouseEnter={handleHoverInCheckout}
+          onMouseLeave={handleHoverOutCheckout}
+          onClick={handleClick}
+          style={
+            isHoveringCheckout ? styles.checkoutActive : styles.checkoutInactive
+          }
+        >
+          Proceed to Checkout
+        </button>
+        <button onClick={clearCart} style={styles.clearCart} className="button">
+          Clear cart
+        </button>
+      </div>
+    </>
   );
 };
 
@@ -80,7 +119,7 @@ const styles = {
   },
   name: {
     fontSize: "1em",
-    width: '25%'
+    width: "25%",
   },
   qtyDiv: {
     display: "flex",
@@ -92,6 +131,37 @@ const styles = {
     fontSize: "1.2em",
   },
   price: {
-    width: '10%'
-  }
+    width: "10%",
+  },
+  total: {
+    fontSize: "2em",
+    marginBottom: "1em",
+  },
+  checkoutInactive: {
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    padding: "0.5em",
+    fontSize: "1.3em",
+    borderRadius: "3px",
+    transition: "200ms ease-in-out",
+    marginBottom: "1em",
+  },
+  checkoutActive: {
+    backgroundColor: "#D60000",
+    color: "white",
+    border: "none",
+    padding: "0.5em",
+    fontSize: "1.3em",
+    borderRadius: "3px",
+    transition: "200ms ease-in-out",
+    cursor: "pointer",
+    marginBottom: "1em",
+  },
+  clearCart: {
+    background: "none",
+    border: "none",
+    color: "red",
+    textDecoration: "underline",
+  },
 };

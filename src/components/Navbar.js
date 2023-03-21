@@ -8,7 +8,7 @@ import { CartContext } from "../context/CartContext";
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
-  const [isEmpty, setIsEmpty] = useState(true)
+  const [isEmpty, setIsEmpty] = useState(true);
 
   useEffect(() => {
     if (cart.length) {
@@ -19,13 +19,13 @@ const Navbar = () => {
   }, [cart]);
 
   return (
-    <header style={styles.navbar}>
+    <div style={styles.navbar}>
       <Link to="/" style={styles.logo}>
         <img src={logo} style={styles.logo} alt="Shop logo" />
       </Link>
       <NavCategories />
       <ShoppingCart isEmpty={isEmpty} />
-    </header>
+    </div>
   );
 };
 
