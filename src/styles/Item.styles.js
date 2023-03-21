@@ -3,7 +3,7 @@ const styles = {
         width: "260px",
         position: "relative",
         boxShadow: "0 2px 7px #dfdfdf",
-        margin: "50px auto",
+        margin: "50px 50px",
         background: "#fafafa",
         display: 'flex',
         flexDirection: 'column',
@@ -29,28 +29,32 @@ const styles = {
         marginBottom: '18px'
     },
     textoTarjetas: {
-        padding: '20px',
+        padding: '10px',
         height: '12em',
-        width: '90%'
+        width: '90%',
     },
     nombre: {
         fontWeight: '500',
         display: 'block',
-        marginBottom: '18px',
+        marginBlock: '18px',
         textTransform: 'uppercase',
-        color: '#363636'
+        color: '#363636',
+        fontSize: '1.2em'
     },
     parteInferior: {
+        display: 'flex',
+        flexDirection: 'column',
         overflow: 'hidden',
         borderTop: '1px solid #eee',
-        paddingTop: '20px'
+        paddingTop: '20px',
+        alignItems: 'center'
     },
     precio: {
         fontSize: '18px',
         fontWeight: '600'
         },
     botonInactive: {
-        padding: '0.7em',
+        padding: '0.5em',
         backgroundColor: 'red',
         color: 'white',
         border: 'none',
@@ -58,7 +62,7 @@ const styles = {
         transition: '200ms ease-in-out'
     },
     botonActive: {
-        padding: '0.7em',
+        padding: '0.5em',
         backgroundColor: '#D60000',
         color: 'white',
         border: 'none',

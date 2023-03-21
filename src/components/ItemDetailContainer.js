@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { db } from "../firebase/firebase";
-import { getDocs, collection, query, where } from "firebase/firestore"
+import { getDocs, collection } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState([]);
@@ -41,7 +41,7 @@ const ItemDetailContainer = () => {
 const styles = {
   container: {
     display: "flex",
-    marginBottom: "50px",
+    marginBottom: "50px"
   },
 };
 

@@ -124,11 +124,11 @@ const styles = {
   qtyDiv: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
     width: "12%",
   },
   qty: {
     fontSize: "1.2em",
+    lineHeight: "20px",
   },
   price: {
     width: "10%",

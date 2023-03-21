@@ -11,7 +11,7 @@ import Cart from "./components/Cart.js";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter style={{backgroundImage: './img/background.png'}}>
         <CartProvider>
           <Navbar />
           <Routes>

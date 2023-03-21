@@ -12,7 +12,6 @@ const styles = {
   },
   divSCNumber: {
     display: "flex",
-    alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "white",
     borderRadius: "50%",
@@ -24,6 +23,7 @@ const styles = {
     fontWeight: "bold",
     fontSize: "large",
     textDecoration: "none",
+    lineHeight: '33px'
   },
 };
 
