@@ -14,20 +14,20 @@ const Cart = () => {
   const [isHoveringCheckout, setIsHoveringCheckout] = useState(false);
   const [isCheckoutClicked, setIsCheckoutClicked] = useState(false);
 
-  const handleHoverInCheckout = (e) => {
+  const handlerHoverInCheckout = (e) => {
     setIsHoveringCheckout(true);
   };
 
-  const handleHoverOutCheckout = (e) => {
+  const handlerHoverOutCheckout = (e) => {
     setIsHoveringCheckout(false);
   };
 
-  const handleClick = (e) => {
+  const handlerClick = (e) => {
     setIsCheckoutClicked(true);
     setIsHoveringCheckout(false);
   };
 
-  const handleClickOff = (e) => {
+  const handlerClickOff = (e) => {
     setIsCheckoutClicked(false);
   };
 
@@ -41,7 +41,9 @@ const Cart = () => {
       </h1>
     </div>
   ) : isCheckoutClicked ? (
-    <Form handleClickOff={handleClickOff} />
+    <Form
+      handlerClickOff={handlerClickOff}
+    />
   ) : (
     <>
       <div style={styles.container}>
@@ -75,9 +77,9 @@ const Cart = () => {
         })}
         <p style={styles.total}>Total: ${total.toFixed(2)}</p>
         <button
-          onMouseEnter={handleHoverInCheckout}
-          onMouseLeave={handleHoverOutCheckout}
-          onClick={handleClick}
+          onMouseEnter={handlerHoverInCheckout}
+          onMouseLeave={handlerHoverOutCheckout}
+          onClick={handlerClick}
           style={
             isHoveringCheckout ? styles.checkoutActive : styles.checkoutInactive
           }
@@ -135,7 +137,7 @@ const styles = {
   },
   total: {
     fontSize: "2em",
-    marginBottom: "1em",
+    marginBlock: "1em",
   },
   checkoutInactive: {
     backgroundColor: "red",
@@ -163,5 +165,6 @@ const styles = {
     border: "none",
     color: "red",
     textDecoration: "underline",
+    marginBottom: "2em",
   },
 };

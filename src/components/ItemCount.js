@@ -7,35 +7,35 @@ const ItemCount = ({stock, onAdd}) => {
   const [isHoveringATC, setIsHoveringATC] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  const handleHoverInSub = (e) => {
+  const handlerHoverInSub = (e) => {
     setIsHoveringSub(true);
   };
 
-  const handleHoverOutSub = (e) => {
+  const handlerHoverOutSub = (e) => {
     setIsHoveringSub(false);
   };
 
-  const handleHoverInAdd = (e) => {
+  const handlerHoverInAdd = (e) => {
     setIsHoveringAdd(true);
   };
 
-  const handleHoverOutAdd = (e) => {
+  const handlerHoverOutAdd = (e) => {
     setIsHoveringAdd(false);
   };
 
-  const handleAdd = (e) => {
+  const handlerAdd = (e) => {
     quantity < stock && setQuantity(quantity + 1);
   };
 
-  const handleSub = (e) => {
+  const handlerSub = (e) => {
     quantity !== 1 && setQuantity(quantity - 1);
   };
 
-  const handleHoverInATC = (e) => {
+  const handlerHoverInATC = (e) => {
     setIsHoveringATC(true);
   };
 
-  const handleHoverOutATC = (e) => {
+  const handlerHoverOutATC = (e) => {
     setIsHoveringATC(false);
   };
 
@@ -49,9 +49,9 @@ const ItemCount = ({stock, onAdd}) => {
                 ? styles.quantityButtonsActive
                 : styles.quantityButtonsInactive
             }
-            onMouseEnter={handleHoverInSub}
-            onMouseLeave={handleHoverOutSub}
-            onClick={handleSub}
+            onMouseEnter={handlerHoverInSub}
+            onMouseLeave={handlerHoverOutSub}
+            onClick={handlerSub}
           >
             -
           </button>
@@ -62,9 +62,9 @@ const ItemCount = ({stock, onAdd}) => {
                 ? styles.quantityButtonsActive
                 : styles.quantityButtonsInactive
             }
-            onMouseEnter={handleHoverInAdd}
-            onMouseLeave={handleHoverOutAdd}
-            onClick={handleAdd}
+            onMouseEnter={handlerHoverInAdd}
+            onMouseLeave={handlerHoverOutAdd}
+            onClick={handlerAdd}
           >
             +
           </button>
@@ -73,8 +73,8 @@ const ItemCount = ({stock, onAdd}) => {
           style={
             isHoveringATC ? styles.addToCartActive : styles.addToCartInactive
           }
-          onMouseEnter={handleHoverInATC}
-          onMouseLeave={handleHoverOutATC}
+          onMouseEnter={handlerHoverInATC}
+          onMouseLeave={handlerHoverOutATC}
           onClick={() => onAdd(quantity)}
         >
           Add to cart

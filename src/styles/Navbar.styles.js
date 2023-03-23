@@ -9,16 +9,20 @@ const styles = {
     width: "100%"
   },
   logo: {
+    
+    width: "80%"
+  },
+  logoDiv: {
     display: "flex",
     alignItems: "center",
-    height: "80%",
-    marginLeft: "0.4em",
+    justifyContent: 'center',
+    width: '20%',
+    paddingRight: '5em'
   },
   lista: {
     listStyle: "none",
     display: "flex",
     flexDirection: "row",
-    marginRight: "3em",
   },
   botones: {
     color: "white",
@@ -28,6 +32,7 @@ const styles = {
   nav: {
     display: "flex",
     flexDirection: "row",
+    marginRight: '10em'
   },
 };
 

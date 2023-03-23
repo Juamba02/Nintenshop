@@ -5,11 +5,11 @@ import styles from "../styles/Item.styles";
 const Item = ({ product }) => {
   const [isHovering, setIsHovering] = useState(false);
 
-  const handleHoverIn = (e) => {
+  const handlerHoverIn = (e) => {
     setIsHovering(true);
   };
 
-  const handleHoverOut = (e) => {
+  const handlerHoverOut = (e) => {
     setIsHovering(false);
   };
 
@@ -31,8 +31,8 @@ const Item = ({ product }) => {
       <Link to={`/item/${product.id}`} style={styles.link}>
         <button
           style={isHovering ? styles.botonActive : styles.botonInactive}
-          onMouseEnter={handleHoverIn}
-          onMouseLeave={handleHoverOut}
+          onMouseEnter={handlerHoverIn}
+          onMouseLeave={handlerHoverOut}
         >
           See More
         </button>

@@ -20,11 +20,12 @@ const Navbar = () => {
 
   return (
     <div style={styles.navbar}>
-      <Link to="/" style={styles.logo}>
+      <Link to="/" style={styles.logoDiv}>
         <img src={logo} style={styles.logo} alt="Shop logo" />
       </Link>
       <NavCategories />
       <ShoppingCart isEmpty={isEmpty} />
+
     </div>
   );
 };

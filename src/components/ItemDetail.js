@@ -13,19 +13,19 @@ const ItemDetail = ({ product }) => {
 
   const {addProduct} = useContext(CartContext)
 
-  const handleHoverInHome = (e) => {
+  const handlerHoverInHome = (e) => {
     setIsHoveringHome(true);
   };
 
-  const handleHoverOutHome = (e) => {
+  const handlerHoverOutHome = (e) => {
     setIsHoveringHome(false);
   };
 
-  const handleHoverInCat = (e) => {
+  const handlerHoverInCat = (e) => {
     setIsHoveringCat(true);
   };
 
-  const handleHoverOutCat = (e) => {
+  const handlerHoverOutCat = (e) => {
     setIsHoveringCat(false);
   };
 
@@ -38,11 +38,11 @@ const ItemDetail = ({ product }) => {
     setIsAdded(false);
   }
 
-  const handleHoverInGTC = (e) => {
+  const handlerHoverInGTC = (e) => {
     setIsHoveringGTC(true);
   };
 
-  const handleHoverOutGTC = (e) => {
+  const handlerHoverOutGTC = (e) => {
     setIsHoveringGTC(false);
   };
 
@@ -53,8 +53,8 @@ const ItemDetail = ({ product }) => {
           <Link
             to={"/"}
             style={isHoveringHome ? styles.linkActive : styles.linkInactive}
-            onMouseEnter={handleHoverInHome}
-            onMouseLeave={handleHoverOutHome}
+            onMouseEnter={handlerHoverInHome}
+            onMouseLeave={handlerHoverOutHome}
           >
             <span>Home</span>
           </Link>
@@ -62,8 +62,8 @@ const ItemDetail = ({ product }) => {
           <Link
             to={`/category/${product.category}`}
             style={isHoveringCat ? styles.linkActive : styles.linkInactive}
-            onMouseEnter={handleHoverInCat}
-            onMouseLeave={handleHoverOutCat}
+            onMouseEnter={handlerHoverInCat}
+            onMouseLeave={handlerHoverOutCat}
           >
             <span>{product.category}</span>
           </Link>
@@ -86,8 +86,8 @@ const ItemDetail = ({ product }) => {
                   ? styles.addToCartActive
                   : styles.addToCartInactive
               }
-              onMouseEnter={handleHoverInGTC}
-              onMouseLeave={handleHoverOutGTC}
+              onMouseEnter={handlerHoverInGTC}
+              onMouseLeave={handlerHoverOutGTC}
               onClick={returnItemCount}
             >
               Go to cart
