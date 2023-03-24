@@ -25,7 +25,6 @@ const Navbar = () => {
       </Link>
       <NavCategories />
       <ShoppingCart isEmpty={isEmpty} />
-
     </div>
   );
 };

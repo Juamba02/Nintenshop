@@ -2,41 +2,98 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../styles/hover.css";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 const Form = ({ handlerClickOff }) => {
   const [isHoveringConfirm, setIsHoveringConfirm] = useState(false);
   const [isHoveringBack, setIsHoveringBack] = useState(false);
   const [isPurchaseConfirmed, setIsPurchaseConfirmed] = useState(false);
-  const [data, setData] = useState({});
+  const [error, setError] = useState(false);
+  const [errorData, setErrorData] = useState([]);
+  const [buyerData, setBuyerData] = useState({});
 
   const { cart, total, clearCart } = useContext(CartContext);
 
   const updateData = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setBuyerData({ ...buyerData, [e.target.name]: e.target.value });
   };
 
   const handlerClick = (e) => {
-    e.preventDefault()
-    const sellCollection = collection(db, "sells");
-    addDoc(sellCollection, {
-      data,
-      items: cart,
-      total,
-      time: serverTimestamp(),
-    });
+    e.preventDefault();
     setIsPurchaseConfirmed(true);
+    handlerStock(cart);
   };
 
-  const handlerStock = (cart) => {
+  const handlerStock = (items) => {
     let auxCart = [];
-    cart.forEach(element => {
-      auxCart.push({id: element.id, quantity: element.quantity})
+    const errorCart = [];
+    items.forEach((element) => {
+      auxCart.push({ id: element.id, quantity: element.quantity });
     });
-    console.log(auxCart);
+    const productsCollection = collection(db, "products");
+    getDocs(productsCollection).then((data) => {
+      const products = data.docs.map((product) => {
+        return { ...product.data(), id: product.id };
+      });
+      let newCart = arrayComparation(products, auxCart);
+      for (let i = 0; i < newCart.length; i++) {
+        const tempObj = newCart[i];
+        if (tempObj.quantity > tempObj.stock) {
+          errorCart.push({
+            name: tempObj.name,
+            id: tempObj.id,
+            stock: tempObj.stock,
+          });
+        }
+      }
+      if (errorCart.length > 0) {
+        setErrorData(errorCart);
+        setError(true);
+      } else {
+        cart.forEach((product) => {
+          const docReference = doc(db, "products", product.id);
+          updateDoc(docReference, { stock: product.stock - product.quantity });
+        });
+        const sellCollection = collection(db, "sells");
+        addDoc(sellCollection, {
+          buyer: buyerData,
+          items: cart,
+          total,
+          time: serverTimestamp(),
+        });
+      }
+    });
+    //  if(error === false){
+    //
+    // }
   };
-  
+
+  const arrayComparation = (source, target) => {
+    let newCart = [];
+    for (let i = 0; i < source.length; i++) {
+      const srcObj = source[i];
+      for (let j = 0; j < target.length; j++) {
+        const tarObj = target[j];
+        if (srcObj.id === tarObj.id) {
+          newCart.push({
+            id: srcObj.id,
+            name: srcObj.name,
+            quantity: tarObj.quantity,
+            stock: srcObj.stock,
+          });
+        }
+      }
+    }
+    return newCart;
+  };
 
   const handlerHoverInConfirm = (e) => {
     setIsHoveringConfirm(true);
@@ -54,13 +111,64 @@ const Form = ({ handlerClickOff }) => {
     setIsHoveringBack(false);
   };
 
-  return (<>
-      <div style={isPurchaseConfirmed ? styles.modalActive : styles.modalInactive}>
+  const handlerClickBack = () => {
+    clearCart();
+    setError(false);
+    setErrorData([]);
+    setIsPurchaseConfirmed(false);
+  };
 
+  return (
+    <>
+      <div
+        style={isPurchaseConfirmed ? styles.modalActive : styles.modalInactive}
+      >
+        {error ? (
+          <div style={styles.modal}>
+            <h3>There was an error with your order!</h3>
+            <h4>We have insufficient stock for the following items:</h4>
+            <ul>
+              {errorData.map((product) => {
+                return (
+                  <li key={product.id}>
+                    {product.name} (Available stock: {product.stock})
+                  </li>
+                );
+              })}
+            </ul>
+            <Link to={"/"}>
+              <button
+                onMouseEnter={handlerHoverInBack}
+                onMouseLeave={handlerHoverOutBack}
+                onClick={handlerClickBack}
+                style={isHoveringBack ? styles.backActive : styles.backInactive}
+              >
+                Back to homepage
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div style={styles.modal}>
+            <h3>Thank you for your purchase!</h3>
+            <p>
+              You will receive an email with the shipment tracking information.
+            </p>
+            <Link to={'/'}>
+              <button
+                onMouseEnter={handlerHoverInBack}
+                onMouseLeave={handlerHoverOutBack}
+                onClick={handlerClickBack}
+                style={isHoveringBack ? styles.backActive : styles.backInactive}
+              >
+                Back to Homepage
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
-   
       <div style={styles.formDiv}>
         <p>Fill with your information:</p>
+
         <form onSubmit={handlerClick} style={styles.form}>
           <div style={styles.inputDiv}>
             <label htmlFor="name">Name:</label>
@@ -163,21 +271,19 @@ const Form = ({ handlerClickOff }) => {
               type="password"
               minLength={3}
               maxLength={3}
-              onChange={() => handlerStock(cart)}
+              onChange={updateData}
               required
             />
           </div>
-          <button
+          <input
             type="submit"
             onMouseEnter={handlerHoverInConfirm}
             onMouseLeave={handlerHoverOutConfirm}
-            // onSubmit={handlerClick}
+            value="Confirm"
             style={
               isHoveringConfirm ? styles.confirmActive : styles.confirmInactive
             }
-          >
-            Confirm
-          </button>
+          />
           <button
             style={styles.cancel}
             className="button"
@@ -187,7 +293,7 @@ const Form = ({ handlerClickOff }) => {
           </button>
         </form>
       </div>
-      </>
+    </>
   );
 };
 
@@ -247,13 +353,33 @@ const styles = {
     color: "grey",
     textDecoration: "underline",
   },
+  modal: {
+    backgroundColor: "white",
+    width: "45%",
+    height: "auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "10px",
+    padding: "3em",
+  },
   modalInactive: {
-    display: "none"
+    display: "none",
   },
   modalActive: {
-    backgroundColor: 'rgba(0, 0, 0, 0.211)',
-    position: 'fixed',
-    height: '80vh'
+    backgroundColor: "rgba(0, 0, 0, 0.211)",
+    position: "fixed",
+    top: "0",
+    right: "0",
+    bottom: "0",
+    left: "0",
+    zIndex: "1",
+    overflow: "hidden",
+    outline: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   backInactive: {
     backgroundColor: "red",
