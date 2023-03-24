@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/Navbar.styles";
 import { NavLink } from "react-router-dom";
-import "../styles/navbar.css"
+import "../styles/navbar.css";
+import { db } from "../firebase/firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 const NavCategories = () => {
-  const categories = [
-    { name: "Games", id: "1", route: "/category/Games" },
-    { name: "Consoles", id: "2", route: "/category/Consoles" },
-    { name: "amiibo", id: "3", route: "/category/amiibo" },
-  ];
+  const [categories, setCategories] = useState([]);
+  const categoriesDoc = collection(db, "categories");
+  getDocs(categoriesDoc).then((data) => {
+    const categoriesList = data.docs.map((category) => {
+      return {
+        ...category.data(),
+        id: category.id
+      };
+    });
+    setCategories(categoriesList)
+  });
 
   return (
     <nav style={styles.nav}>
