@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase/firebase";
 import { getDocs, collection } from "firebase/firestore";
 import Carousel from "./Carousel";
+import styles from "../styles/ItemListContainer.styles";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -63,44 +63,6 @@ const ItemListContainer = () => {
       )}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: "21.5vh"
-  },
-  itemContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "row",
-  },
-  loader: {
-    height: "60vh",
-  },
-  featured: {
-    fontSize: "2em",
-    fontWeight: "500",
-    padding: "1em",
-    borderRadius: "10px",
-    color: 'white'
-  },
-  carContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "50%",  
-    background: "#E40112",
-    boxShadow: "10px 20px 7px #dfdfdf",
-    marginTop: '1em',
-    borderRadius: '10px',
-    overflow: 'hidden'
-  },
 };
 
 export default ItemListContainer;
