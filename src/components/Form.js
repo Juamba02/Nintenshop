@@ -20,6 +20,7 @@ const Form = ({ handlerClickOff }) => {
   const [error, setError] = useState(false);
   const [errorData, setErrorData] = useState([]);
   const [buyerData, setBuyerData] = useState({});
+  const [sellID, setSellID] = useState("");
 
   const { cart, total, clearCart } = useContext(CartContext);
 
@@ -69,12 +70,10 @@ const Form = ({ handlerClickOff }) => {
           items: cart,
           total,
           time: serverTimestamp(),
-        });
+        })
+        .then(result => setSellID(result.id));
       }
     });
-    //  if(error === false){
-    //
-    // }
   };
 
   const arrayComparation = (source, target) => {
@@ -151,6 +150,7 @@ const Form = ({ handlerClickOff }) => {
         ) : (
           <div style={styles.modal}>
             <h3>Thank you for your purchase!</h3>
+            <p>Your purchase ID is: <strong>#{sellID}</strong></p>
             <p>
               You will receive an email with the shipment tracking information.
             </p>
